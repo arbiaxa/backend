@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+
+spec:
+  template:
+    metadata:
+      name:
+      labels:
+        app: springboot-k8s
+
+    spec:
+      containers:
+        - name: springboot-k8s
+          image: arb1ia/backend
+          ports:
+            -containerPort: 8080
+
+
+
+replicas: 2
+selector:
+  matchLabels:
+    app: springboot-k8s
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-k8s
+
+spec:
+  type: clusterIP
+  ports:
+    - targetPort: 8080
+      port: 80
+      
+  selector:
+    app: springboot-k8s
+
+
+
+
+
+
+
+
+
+
