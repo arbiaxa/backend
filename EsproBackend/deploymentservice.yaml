@@ -17,6 +17,11 @@ spec:
           ports:
             -containerPort: 8080
 
+        - name: mysql
+          image: mysql:latest
+          ports:
+            -containerPort:3306
+
 
 
 replicas: 2
@@ -34,11 +39,12 @@ metadata:
   name: springboot-k8s
 
 spec:
-  type: clusterIP
+  type: nodePort
   ports:
     - targetPort: 8080
       port: 80
-      
+      nodePort: 31020
+
   selector:
     app: springboot-k8s
 
