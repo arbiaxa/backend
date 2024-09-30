@@ -24,11 +24,6 @@ spec:
 
 
 
-replicas: 1
-selector:
-  matchLabels:
-    app: springboot-k8s
-
 
 ---
 
@@ -39,7 +34,7 @@ metadata:
   name: springboot-k8s
 
 spec:
-  type: nodePort
+  type: NodePort
   ports:
     - targetPort: 8080
       port: 80
